@@ -1,6 +1,6 @@
 import React from 'react'
 
-import List from './components/organisms/List'
+import style from './style'
 
 
 
@@ -8,9 +8,11 @@ function SideNav(props) {
 
 
     return (
-        <>
-            <List menu={ props.menu }/>
-        </>
+        <nav style={ style.nav(props.theme) }  >
+
+            { props.ul }
+
+        </nav>
     )
 }
 

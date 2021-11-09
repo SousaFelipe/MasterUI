@@ -14,8 +14,8 @@ const globalStyle = {
 
 
 
-const getItem = function (active, color) {
-    const item = (style[color] || style['transparent'])(active)
+const getItem = function (color) {
+    const item = (style[color] || style['transparent'])()
 
     return {
         ...globalStyle,
@@ -26,35 +26,35 @@ const getItem = function (active, color) {
 
 
 const style = {
-    item: (active = false, color = 'transparent') => getItem(active, color),
+    item: (color = 'transparent') => getItem(color),
 
 
-    'primary': (active) => ({
-        backgroundColor: (active ? colors.muted.primary() : 'transparent !important')
+    'primary': () => ({
+        backgroundColor: colors.muted.primary(0.5)
     }),
 
-    'secondary': (active) => ({
-        backgroundColor: (active ? colors.muted.secondary() : 'transparent !important')
+    'secondary': () => ({
+        backgroundColor: colors.muted.secondary(0.5)
     }),
 
-    'success': (active) => ({
-        backgroundColor: (active ? colors.muted.success() : 'transparent !important')
+    'success': () => ({
+        backgroundColor: colors.muted.success(0.5)
     }),
 
-    'info': (active) => ({
-        backgroundColor: (active ? colors.muted.info() : 'transparent !important')
+    'info': () => ({
+        backgroundColor: colors.muted.info(0.5)
     }),
 
-    'warning': (active) => ({
-        backgroundColor: (active ? colors.muted.warning() : 'transparent !important')
+    'warning': () => ({
+        backgroundColor: colors.muted.warning(0.5)
     }),
 
-    'danger': (active) => ({
-        backgroundColor: (active ? colors.muted.danger() : 'transparent !important')
+    'danger': () => ({
+        backgroundColor: colors.muted.danger(0.5)
     }),
 
-    'transparent': () => ({
-        backgroundColor: 'transparent !important'
+    'none': () => ({
+        backgroundColor: null
     })
 }
 

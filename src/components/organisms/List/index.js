@@ -13,9 +13,15 @@ export default function List (props) {
         props.items.map(item => (
             <Item
                 key={ item.id }
-                color='primary'
-                >
-                { item.content }
+                path={ item.path }
+                icon={ item.icon }
+                background={ props.background.default }
+                activeBackground={ props.background.active }
+                foreground={ props.foreground.default }
+                activeForeground={ props.foreground.active }>
+
+                { item.title }
+
             </Item>
         ))
     )

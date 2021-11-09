@@ -19,12 +19,12 @@ const colors = {
 
 
     muted: {
-        'primary':      () => '#364B7A',
-        'secondary':    () => '#303D57',
-        'success':      () => '#2C625C',
-        'danger':       () => '#683B4E',
-        'warning':      () => '#675446',
-        'info':         () => '#1B5F75',
+        'primary':      (alpha = 1) => `rgba(54, 75, 122, ${ alpha })`,
+        'secondary':    (alpha = 1) => `rgba(48, 61, 87,  ${ alpha })`,
+        'success':      (alpha = 1) => `rgba(44, 98, 92,  ${ alpha })`,
+        'danger':       (alpha = 1) => `rgba(104, 59, 78, ${ alpha })`,
+        'warning':      (alpha = 1) => `rgba(103, 84, 70, ${ alpha })`,
+        'info':         (alpha = 1) => `rgba(27, 95, 117, ${ alpha })`,
     },
 
 
