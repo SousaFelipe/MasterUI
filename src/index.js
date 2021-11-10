@@ -5,6 +5,11 @@ import App from './App'
 
 
 
+import './assets/css/boxicons.min.css'
+import './assets/css/bootstrap-grid.min.css'
+
+
+
 ReactDOM.render(
     <React.StrictMode>
         <App />

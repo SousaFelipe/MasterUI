@@ -1,11 +1,61 @@
-* {
-    box-sizing: border-box;
-    padding:    0;
-    margin:     0;
+
+:root {
+
+    --blue:             #5A8DEE;
+    --blue-light:       #719DF0;
+    --blue-muted:       rgba(54, 75, 122, 0.5);
+
+    --gray:             #475F7B;
+    --gray-light:       #506B8B;
+    --gray-muted:       rgba(48, 61, 87, 0.5);
+
+    --info:             #00CFDD;
+    --info-light:       #00E7E7;
+    --info-muted:       rgba(27, 95, 117, 0.5);
+
+    --success:          #39DA8A;
+    --success-light:    #4EDE97;
+    --success-muted:    rgba(44, 98, 92, 0.5);
+
+    --warning:          #FDAC41;
+    --warning-light:    #FDB75A;
+    --warning-muted:    rgba(103, 84, 70, 0.5);
+
+    --danger:           #FF5B5C;
+    --danger-light:     #FF7575;
+    --danger-muted:     rgba(104, 59, 78, 0.5);
+
+    --bg-main:          #1A233A;
+    --bg-main-light:    #272E48;
+
+    --bg-default:       #343B53;
+    --bg-default-light: #464D5C;
+
+    --light:            #A3AFBD;
+    --dark:             #394C62;
+
+    --text-primary:     #BDD1F8;
+    --text-secondary:   #8A99B5;
+    --text-muted:       #445B77;
+
 }
 
-htmol,
+* {
+    box-sizing:                     border-box;
+    padding:                        0;
+    margin:                         0;
+    -webkit-tap-highlight-color:    transparent;
+}
+
+html,
 body {
-    width:      100vw;
-    height:     100vh;
+    width:                      100vw;
+    height:                     100vh;
+    -webkit-font-smoothing:     antialiased;
+    -moz-osx-font-smoothing:    grayscale;
+}
+
+a {
+    text-decoration:    none;
+    color:              unset;
 }
