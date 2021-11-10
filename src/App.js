@@ -1,12 +1,39 @@
 import React from 'react'
 
-import Layout from './components/layouts/Admin'
+import {
+    BrowserRouter,
+    Routes
+} from 'react-router-dom'
+
+import WebRoutes from './WebRoutes'
+
+import Sidebar from './components/organisms/Sidebar'
+
+import { isAuthenticated } from './services/auth'
 
 
 
 function App() {
     return (
-        <Layout />
+        <BrowserRouter>
+            <Routes render={ (props) => (
+                <div className="layout">
+
+                    {(props) => (
+                        isAuthenticated() ? <Sidebar { ...props }/> : <></>
+                    )}
+
+                    <div className="layout-content">
+                        <div className="layout-content-main">
+
+                            <WebRoutes />
+
+                        </div>
+                    </div>
+
+                </div>
+            )}/>
+        </BrowserRouter>
     )
 }
 
