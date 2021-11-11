@@ -5,7 +5,7 @@ import {
     Routes
 } from 'react-router-dom'
 
-import AuthProvider from './app/providers/AuthProvider'
+import AuthProvider from './app/providers/Auth'
 import LayoutProvider from './app/providers/Layout'
 
 import RequireAuth from './app/middlewares/RequireAuth'
@@ -22,7 +22,7 @@ export default function App () {
         <AuthProvider>
 
             <Routes>
-                <Route element={ <Layout/> } >
+                <Route element={ <LayoutProvider/> } >
                     <Route path='/' element={ <Home /> } />
                     <Route path='/login' element={ <Login /> } />
                     <Route path='/dashboard' element={ <RequireAuth> <Dashboard /> </RequireAuth> } />
