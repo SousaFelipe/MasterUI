@@ -53,6 +53,7 @@ body {
     height:                     100vh;
     -webkit-font-smoothing:     antialiased;
     -moz-osx-font-smoothing:    grayscale;
+    font-family:                'Rubik', sans-serif;
 }
 
 a {

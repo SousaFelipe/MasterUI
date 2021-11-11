@@ -1,42 +1,35 @@
 import React from 'react'
 
 import {
-    BrowserRouter,
+    Route,
     Routes
 } from 'react-router-dom'
 
-import WebRoutes from './WebRoutes'
+import Auth from './app/providers/Auth'
+import Layout from './app/providers/Layout'
 
-import Sidebar from './components/organisms/Sidebar'
+import RequireAuth from './app/middlewares/RequireAuth'
 
-import { isAuthenticated } from './services/auth'
+import Home from './app/components/pages/Home'
+import Login from './app/components/pages/Auth/Login'
+import Dashboard from './app/components/pages/Admin/Dashboard'
+import Isps from './app/components/pages/Admin/Isps'
 
 
 
-function App() {
+export default function App () {
     return (
-        <BrowserRouter>
-            <Routes render={ (props) => (
-                <div className="layout">
+        <Auth>
 
-                    {(props) => (
-                        isAuthenticated() ? <Sidebar { ...props }/> : <></>
-                    )}
+            <Routes>
+                <Route element={ <Layout/> } >
+                    <Route path='/' element={ <Home /> } />
+                    <Route path='/login' element={ <Login /> } />
+                    <Route path='/dashboard' element={ <RequireAuth> <Dashboard /> </RequireAuth> } />
+                    <Route path='/provedores' element={ <RequireAuth> <Isps /> </RequireAuth> } />
+                </Route>
+            </Routes>
 
-                    <div className="layout-content">
-                        <div className="layout-content-main">
-
-                            <WebRoutes />
-
-                        </div>
-                    </div>
-
-                </div>
-            )}/>
-        </BrowserRouter>
+        </Auth>
     )
 }
-
-
-
-export default App
