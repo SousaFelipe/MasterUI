@@ -19,6 +19,6 @@ export default function RequireAuth ({ children }) {
     return (
         auth.user
             ? children
-            : <Navigate to="/login" state={{ from: location }} />
+            : <Navigate to='/login' state={{ from: location }} />
     )
 }

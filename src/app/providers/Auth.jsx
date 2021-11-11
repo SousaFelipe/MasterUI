@@ -12,29 +12,25 @@ export default function AuthProvider ({ children }) {
     const [user, setUser] = useState(null)
 
 
-    let signin = (credentials, callback) => {
-        fakeAuth(credentials)
-            .signin(newUser => {
-                setUser(newUser)
-                callback()
-            })
+    let signin = (credentials) => {
+        return fakeAuth(credentials)
+            .attempt(newUser => setUser(newUser))
     }
 
 
-    let signout = (currentUser, callback) => {
-        fakeAuth(currentUser)
-            .signout(() => {
-                callback()
-            })
+    let signout = (currentUser) => {
+        return fakeAuth(currentUser)
+            .logout()
     }
 
 
     return (
         <AuthContext.Provider
+
             value={{
-                user: user,
-                signin: signin,
-                signout: signout
+                user,
+                signin,
+                signout
             }}>
 
             { children }
@@ -46,11 +42,11 @@ export default function AuthProvider ({ children }) {
 
 
 export function useAuth () {
-    const { user, signin, signout } = useContext(AuthContext)
+    const auth = useContext(AuthContext)
 
     return {
-        user,
-        signin,
-        signout
+        user: auth.user ? auth.user : false,
+        signin: auth.signin,
+        signout: auth.signout
     }
 }

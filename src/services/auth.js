@@ -3,21 +3,17 @@ export const TOKEN_KEY = 'lspk_sess_token'
 
 export const fakeAuth = (testUser) => {
 
-    testUser = {
-        name: 'Felipe Sousa',
-        email: 'sousa.felipe@spark.com',
-        token: 'FsakslaasdoJlvlksdçskvnjiohvfibfbdcff65wd6f65ew4s1vbsgnb6f1dfvv5'
-    }
-
     return {
 
-        signin: (callback) => {
-            return callback(testUser)
+        attempt: (callback) => {
+            return callback({
+                name: 'Felipe Sousa',
+                token: 'FsakslaasdoJlvlksdçskvnjiohvfibfbdcff65wd6f65ew4s1vbsgnb6f1dfvv5',
+                ...testUser
+            })
         },
 
-        signout: (callback) => {
-            return callback()
-        }
+        logout: () => true
     }
 }
 
