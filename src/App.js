@@ -5,8 +5,8 @@ import {
     Routes
 } from 'react-router-dom'
 
-import Auth from './app/providers/Auth'
-import Layout from './app/providers/Layout'
+import AuthProvider from './app/providers/AuthProvider'
+import LayoutProvider from './app/providers/Layout'
 
 import RequireAuth from './app/middlewares/RequireAuth'
 
@@ -19,7 +19,7 @@ import Isps from './app/components/pages/Admin/Isps'
 
 export default function App () {
     return (
-        <Auth>
+        <AuthProvider>
 
             <Routes>
                 <Route element={ <Layout/> } >
@@ -30,6 +30,6 @@ export default function App () {
                 </Route>
             </Routes>
 
-        </Auth>
+        </AuthProvider>
     )
 }
