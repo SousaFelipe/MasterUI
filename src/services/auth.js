@@ -1,21 +1,4 @@
-export const TOKEN_KEY = 'lspk_sess_token'
-
-
-export const fakeAuth = (testUser) => {
-
-    return {
-
-        attempt: (callback) => {
-            return callback({
-                name: 'Felipe Sousa',
-                token: 'FsakslaasdoJlvlksdçskvnjiohvfibfbdcff65wd6f65ew4s1vbsgnb6f1dfvv5',
-                ...testUser
-            })
-        },
-
-        logout: () => true
-    }
-}
+const TOKEN_KEY = 'LSPK_SSNTKN'
 
 
 export const isAuthenticated = () => (
@@ -28,11 +11,12 @@ export const getToken = () => (
 )
 
 
-export const login = (token) => {
+export const storeToken = (token) => {
     localStorage.setItem(TOKEN_KEY, token)
+    return getToken()
 }
 
 
-export const logout = () => {
+export const destroyToken = () => {
     localStorage.removeItem(TOKEN_KEY)
 }

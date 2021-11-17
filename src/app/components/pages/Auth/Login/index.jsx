@@ -1,24 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 
-import { useAuth } from '../../../../providers/Auth'
+import { AuthContext } from '../../../../providers/Auth'
 
 
 
 export default function Login (props) {
+    const { signIn } = useContext(AuthContext)
 
 
-    const { signin } = useAuth()
+    const [email, setEmail] = useState('')
+    const [passw, setPassw] = useState('')
 
 
-    useEffect(() => signin({
+    const handleLogin = async function () {
 
-        email: 'sousa.felipe@spark.com',
-        password: 'marver1234'
+        setEmail('spark@spark.com')
+        setPassw('tmncfldpt101')
 
-    }), [])
+        let response = await signIn({
+            email: email,
+            password: passw
+        })
+
+        console.log(response)
+    }
 
 
     return (
-        <span>Login</span>
+        <>
+            <input type="button" value="Entrar" onClick={ handleLogin }/>
+        </>
     )
 }

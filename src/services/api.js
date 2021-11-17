@@ -4,21 +4,27 @@ import { getToken } from './auth'
 
 
 const api = axios.create({
-    baseURL: 'http://127.0.0.1:3333'
+    baseURL: 'http://127.0.0.1:3333',
+    headers: [
+        {'Content-Type' : 'application/json'}
+    ]
 })
 
 
+api.interceptors.request.use(
+    config => {
+        const token = getToken()
 
-api.interceptors.request.use(async (config) => {
-    const token = getToken()
+        if (token) {
+            config.headers.authorization = `Bearer ${ token }`
+        }
 
-    if (token) {
-        config.headers.Authorization = `Bearer ${ token }`
+        return config
+    },
+    error => {
+        return Promise.reject(error)
     }
-
-    return config
-})
-
+)
 
 
 export default api

@@ -8,7 +8,7 @@ import {
 import AuthProvider from './app/providers/Auth'
 import LayoutProvider from './app/providers/Layout'
 
-import RequireAuth from './app/middlewares/RequireAuth'
+import Auth from './app/middlewares/Auth'
 
 import Home from './app/components/pages/Home'
 import Login from './app/components/pages/Auth/Login'
@@ -25,8 +25,8 @@ export default function App () {
                 <Route element={ <LayoutProvider/> } >
                     <Route path='/' element={ <Home /> } />
                     <Route path='/login' element={ <Login /> } />
-                    <Route path='/dashboard' element={ <RequireAuth> <Dashboard /> </RequireAuth> } />
-                    <Route path='/provedores' element={ <RequireAuth> <Isps /> </RequireAuth> } />
+                    <Route path='/dashboard' element={ <Auth> <Dashboard /> </Auth> } />
+                    <Route path='/provedores' element={ <Auth> <Isps /> </Auth> } />
                 </Route>
             </Routes>
 

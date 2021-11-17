@@ -1,6 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { fakeAuth } from '../../services/auth'
+import api from '../../services/api'
+
+import {
+    getToken,
+    storeToken,
+    destroyToken
+} from '../../services/auth'
 
 
 
@@ -9,44 +15,54 @@ const AuthContext = React.createContext()
 
 
 export default function AuthProvider ({ children }) {
+
+
     const [user, setUser] = useState(null)
 
 
-    let signin = (credentials) => {
-        return fakeAuth(credentials)
-            .attempt(newUser => setUser(newUser))
+    useEffect (() => {
+
+        (async function () {
+            const token = getToken()
+
+            if (token) {
+                let response = await api.get('/auth', {
+                    headers: { 'Authorization': `Bearer ${ token }` }
+                })
+
+                if (response.user) {
+                    setUser(response.user)
+                }
+            }
+        })()
+
+    }, [])
+
+
+    const signIn = async function (credentials) {
+        let response = await api.post('/auth', credentials)
+
+        if (response.token) {
+            api.defaults.headers.Authorization = `Bearer ${ response.token }`
+            storeToken(response.token)
+        }
+
+        return response
     }
 
 
-    let signout = (currentUser) => {
-        return fakeAuth(currentUser)
-            .logout()
+    const signOut = async function (user) {
+
     }
 
 
     return (
-        <AuthContext.Provider
-
-            value={{
-                user,
-                signin,
-                signout
-            }}>
-
+        <AuthContext.Provider value={{ user, signIn, signOut }}>
             { children }
-
         </AuthContext.Provider>
     )
 }
 
 
 
-export function useAuth () {
-    const auth = useContext(AuthContext)
-
-    return {
-        user: auth.user ? auth.user : false,
-        signin: auth.signin,
-        signout: auth.signout
-    }
-}
+export { AuthContext, AuthProvider }

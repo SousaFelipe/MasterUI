@@ -1,23 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import {
     Navigate,
     useLocation
 } from 'react-router-dom'
 
-import { useAuth } from '../providers/Auth'
+import { AuthContext } from '../providers/Auth'
 
 
 
-export default function RequireAuth ({ children }) {
+export default function Auth ({ children }) {
+    const { user } = useContext(AuthContext)
 
 
-    const auth = useAuth()
     const location = useLocation()
 
 
     return (
-        auth.user
+        user
             ? children
             : <Navigate to='/login' state={{ from: location }} />
     )
