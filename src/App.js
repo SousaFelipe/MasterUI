@@ -15,6 +15,8 @@ import Login from './app/components/pages/Auth/Login'
 import Dashboard from './app/components/pages/Admin/Dashboard'
 import Isps from './app/components/pages/Admin/Isps'
 
+import history from './services/history'
+
 
 
 export default function App () {
@@ -22,7 +24,7 @@ export default function App () {
         <AuthProvider>
 
             <Routes>
-                <Route element={ <LayoutProvider/> } >
+                <Route history={ history } element={ <LayoutProvider/> } >
                     <Route path='/' element={ <Home /> } />
                     <Route path='/login' element={ <Login /> } />
                     <Route path='/dashboard' element={ <Auth> <Dashboard /> </Auth> } />
